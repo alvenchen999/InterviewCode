@@ -48,7 +48,8 @@ public class Calculator {
     }
 
     public static void main(String[] args){
-        String s = "1+2+3-4-5";
+        String s = "(1+(4+5+2)-3)+(6+8)";
+                //"1+2+3-4-5";
         Calculator cal = new Calculator();
         int res = cal.calculate(s);
         System.out.println(res);
