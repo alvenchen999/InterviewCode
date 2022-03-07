@@ -37,6 +37,38 @@ public class MergeLinkedList {
         return res;
     }
 
+    public IntNode mergeList1(IntNode l1, IntNode l2){
+        if(l1 == null)
+            return l2;
+        if(l2 == null)
+            return l1;
+        if(l1.value< l2.value){
+            l1.next = mergeList1(l1.next, l2);
+            return l1;
+        }
+        else{
+            l2.next = mergeList1(l1, l2.next);
+            return l2;
+        }
+
+    }
+
+    public IntNode mergeList2(IntNode l1, IntNode l2){
+        if(l1 == null)
+            return l2;
+        if(l2 == null)
+            return l1;
+        if(l1.value< l2.value){
+            l1.next = mergeList2(l1.next, l2);
+            return l1;
+        }
+        else{
+            l2.next = mergeList2(l1, l2.next);
+            return l2;
+        }
+
+    }
+
     public static void main(String[] args) {
         MergeLinkedList test = new MergeLinkedList();
         IntNode n1 = new IntNode(1);
@@ -49,8 +81,10 @@ public class MergeLinkedList {
         n12.next = n13;
         n2.next = n21;
         n21.next = n23;
-        IntNode res = test.mergeList(n1, n2);
-        IntNode.printNodeList(res);
+        //IntNode res = test.mergeList(n1, n2);
+        //IntNode.printNodeList(res);
+        IntNode res1 = test.mergeList1(n1, n2);
+        IntNode.printNodeList(res1);
     }
 
 }
