@@ -19,6 +19,8 @@ public class ValidParentheses {
                     stack.push('}');
                     break;
                 default:
+                    if(Character.isLetterOrDigit(ch))
+                        continue;
                     if(stack.isEmpty() || stack.pop() != ch)
                         return false;
             }
@@ -28,7 +30,7 @@ public class ValidParentheses {
 
     public static void main(String[] args){
         ValidParentheses test = new ValidParentheses();
-        System.out.println(test.isValid("{{()}}[]"));
+        System.out.println(test.isValid("{{(qq)}}[a]a"));
         System.out.println(test.isValid("{{()}}[]"));
     }
 }

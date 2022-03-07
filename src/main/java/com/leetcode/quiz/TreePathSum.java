@@ -1,5 +1,8 @@
 package com.leetcode.quiz;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。
  *
@@ -7,11 +10,33 @@ package com.leetcode.quiz;
  */
 
 public class TreePathSum {
-
+    List<List<Integer>> result;
     public boolean pathSum(IntTreeNode t, int sum){
         if(t == null) return false;
         if(t.left==null && t.right==null && sum == t.val) return true;
         return pathSum(t.left, sum-t.val)||pathSum(t.right, sum - t.val);
+    }
+
+    public List<List<Integer>> pathSum1(IntTreeNode root, int target){
+        result = new ArrayList<>();
+        if(root==null) return result;
+        DFS(root, target,0, new ArrayList<>());
+        return result;
+
+    }
+
+    public void DFS(IntTreeNode root, int target, int count, List<Integer> item){
+        if(root == null) return;
+        item.add(root.val);
+        count += root.val;
+        if(root.left==null && root.right==null&&count==target){
+            result.add(new ArrayList<>(item));
+            item.remove(item.size()-1);
+            return;
+        }
+        DFS(root.left, target, count, item);
+        DFS(root.right, target, count, item);
+        item.remove(item.size()-1);
     }
 
     public static void main(String[] args){
