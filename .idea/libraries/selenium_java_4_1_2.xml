@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="junit-4.8">
+  <library name="selenium-java-4.1.2">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/junit-4.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/selenium-java-4.1.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

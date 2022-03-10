@@ -12,9 +12,9 @@ public class ClimbStairs {
             return climbStairs(n-1) + climbStairs(n-2);
     }
 
-    public int climbStairs1(int n){
+    public long climbStairs1(int n){
         if(n<=0) return -1;
-        int cur = 1, pre = 1, prepre = 1;
+        long cur = 1, pre = 1, prepre = 1;
         for(int i=2; i<=n; i++){
             cur = pre + prepre;
             prepre = pre;
@@ -25,7 +25,7 @@ public class ClimbStairs {
 
     public static void main(String[] args){
         ClimbStairs test = new ClimbStairs();
-        System.out.println(test.climbStairs(4));
-        System.out.println(test.climbStairs1(45));
+        System.out.println(test.climbStairs(10));
+        System.out.println(test.climbStairs1(500));
     }
 }

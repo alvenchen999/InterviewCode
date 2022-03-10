@@ -1,0 +1,68 @@
+/**
+ * Method: topThreeDestinationsfromLocation:fromItineraries:separator:
+ * Parameters:
+ * - location: departing location
+ * - itineraries: array strings of chained destinations @"Amsterdam-Antwerp-Ghent-Brugge-Lille"
+ * - separator: separator used in the itinerary strings
+ * Returns:
+ * an array of the top three destinations with their respective scores
+ */
+- (NSArray *)topThreeDestinationsfromLocation:(NSString *)location fromItineraries:(NSArray *)itineraries {
+  // your code here
+}
+}
+
+
+// Example:
+Location: Antwerp(place of departure)
+
+Itineraries: @[
+@"Amsterdam-Antwerp-Ghent-Brugge-Lille-Calais-London-Ghent-Amsterdam…",
+@"Amsterdam-Brussels-Paris-Bordeaux-Madrid-Lisbon…",
+@"Brussels-Antwerp-Amsterdam-Hambourg-Berlin-Prague…",
+@"Hambourg-Amsterdam-Antwerp-Brussels-Dusseldorf-Strasbourg…",
+@"Lille-Ghent-Brussels-Antwerp-Amsterdam-Coppenhagen-Stockholm-Helsinki…",
+@"Bordeaux-Lille-Hambourg-Helsinki-St. Petersbourg…"]
+
+Result: Amsterdam (3), Ghent (2), Brugge (1), Lille (1) ...
+
+Returns: @[@"Amsterdam (3)", @"Ghent (2)", @"Brugge (1)"]
+
+
+
+def topThreeDestinationsfromLocation(location, itineraries, sep='-'):
+    destDict = {}
+    result = []
+    keytmp = []
+    # Antwerp
+    # "Amsterdam-Antwerp-Ghent-Brugge-Lille-Calais-London-Ghent-Amsterdam…",
+    for line in itineraries:
+        pathArr = line.split(sep=sep)
+        if location in pathArr:
+            for(i in range(0, len(pathArr)-1)):
+                if pathArr[i]==location and pathArr[i+1]:
+                    if not pathArr[i+1} in destDict.keys():
+                        destDict.update({pathArr[i+1] : 1})
+                    else:
+                        destDict.update({pathArr[i+1] : destDict[pathArr[i+1]]+1})
+                else:
+                    continue
+    # destDict: ["Ghent": 2, "Brugge": 1, "Lille": 1, "Calais": 1, "London": 1, "Amsterdam": 1]
+
+    # top3Loc: [2, 1, 1]
+    # for key in destDict.keys():
+    #     for i in range(0, len(top3Loc)):
+    #         # Line below?
+    #         if destDict[key] == top3Loc[i]:
+    #             result.append({key: destDict[key]})
+    for key in destDict.keys():
+        if not len(keytmp)>0:
+            keytmp.append(key)
+        elif destDict[key] > destDict[keytmp[0]]:
+            keytmp.insert(0, key)
+        else:
+            keytmp.append(key)
+
+    for i in range(0,3):
+        result.append(keytmp[i]: destDict[keytmp[i]])
+    return result
